@@ -1,0 +1,14 @@
+.chatBox{
+    width: 100;
+    padding:  10px;
+    max-height: calc(100vh - 11vh);
+    height: 100%;
+    overflow: auto;
+    margin-top: 50px;
+
+    
+}
+
+body {
+    overflow: hidden;
+}

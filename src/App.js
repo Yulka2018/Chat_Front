@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MainPage from './MainPage';
+import ChatRooms from './ChatRooms';
+import HomePage from './HomePage.js'
+import {Provider} from 'react-redux';
+import {store, ConnectedLogin} from './reducers.js';
+
+import {Switch, Router, Route} from 'react-router-dom';
+import createHistory from "history/createBrowserHistory"; 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store = {store}>  
+        <Router history = {createHistory()}>
+          <div>
+              <Switch>
+                  <Route path="/" component = {MainPage} exact/>
+                  <Route path="/chatrooms" component = {ChatRooms}/>
+                  <Route path = "/LogIn" component = {ConnectedLogin} />
+                  <Route path = "/home/:nick" component = {HomePage} />
+              </Switch>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
 
+
 export default App;
+
+
